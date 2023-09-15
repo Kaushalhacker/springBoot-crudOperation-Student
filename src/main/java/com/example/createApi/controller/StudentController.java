@@ -23,13 +23,7 @@ public class StudentController {
     @Autowired
     private StudentRepository studentRepository;
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
 
-    @GetMapping("/welcome")
-    public String welcome(){
-        return "welcome this enpoint is not secure";
-    }
 
     @PostMapping("/students")
     public ResponseEntity<?> addStudent(@RequestBody Student student) {
@@ -47,7 +41,8 @@ public class StudentController {
     }
 
     @GetMapping("/students")
-    public List<Student> getJobs() {
+    public List<Student> getJobs()
+    {
         return studentService.fetchStudentlist();
     }
 
@@ -92,4 +87,5 @@ public class StudentController {
         Student savedStudent=studentRepository.save(student1);
         return ResponseEntity.ok(savedStudent);
     }
+
 }

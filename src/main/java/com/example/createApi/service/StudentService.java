@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -62,6 +63,15 @@ public class StudentService {
         } catch (IllegalArgumentException e) {
             throw new BusinessException("608", "given student id is null ,please send some id to be search" + e.getMessage());
         }
+    }
+
+    public List<Student> fetchByStudentFirstName(String firstName) {
+       List<Student> students=studentRepository.findByFirstName(firstName);
+       if(students.size()> 0){
+           return students;
+       }else {
+           return new ArrayList<Student>();
+       }
     }
 }
 
